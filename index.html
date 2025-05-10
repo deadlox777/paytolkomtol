@@ -1,0 +1,441 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PAYMENT - DEADLOX STORE</title>
+    <style>
+        :root {
+            --primary: #6c5ce7;
+            --secondary: #a29bfe;
+            --accent: #fd79a8;
+            --dark: #2d3436;
+            --light: #f5f6fa;
+            --success: #00b894;
+            --warning: #fdcb6e;
+            --danger: #d63031;
+        }
+        
+        body {
+            font-family: 'Poppins', 'Segoe UI', sans-serif;
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #f9f9f9;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .payment-container {
+            background-color: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            transition: transform 0.3s ease;
+        }
+        
+        .payment-container:hover {
+            transform: translateY(-5px);
+        }
+        
+        .payment-header {
+            text-align: center;
+            margin-bottom: 25px;
+        }
+        
+        .payment-header h1 {
+            color: var(--primary);
+            margin-bottom: 10px;
+            font-weight: 700;
+            font-size: 28px;
+        }
+        
+        .store-name {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 20px;
+            margin-bottom: 5px;
+        }
+        
+        .payment-method {
+            margin-bottom: 25px;
+            border: 1px solid #e0e0e0;
+            border-radius: 12px;
+            padding: 20px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+        
+        .payment-method:hover {
+            border-color: var(--secondary);
+            box-shadow: 0 5px 15px rgba(108, 92, 231, 0.1);
+        }
+        
+        .payment-method h2 {
+            margin-top: 0;
+            color: var(--primary);
+            font-size: 18px;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .payment-logo {
+            width: 70px;
+            height: auto;
+            margin-bottom: 15px;
+            border-radius: 8px;
+        }
+        
+        .payment-number {
+            font-weight: bold;
+            font-size: 16px;
+            margin: 15px 0;
+            padding: 12px;
+            background-color: var(--light);
+            border-radius: 8px;
+            word-break: break-all;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .payment-instruction {
+            font-size: 14px;
+            color: #666;
+            margin-bottom: 10px;
+        }
+        
+        .note {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 12px;
+            margin-top: 25px;
+            border-left: 4px solid var(--primary);
+            font-size: 14px;
+        }
+        
+        .warning {
+            color: var(--danger);
+            font-weight: 600;
+            background-color: rgba(214, 48, 49, 0.1);
+            padding: 8px 12px;
+            border-radius: 6px;
+            display: inline-block;
+            margin-bottom: 10px;
+        }
+        
+        .copy-btn {
+            background-color: var(--primary);
+            color: white;
+            border: none;
+            padding: 6px 12px;
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 12px;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 5px;
+        }
+        
+        .copy-btn:hover {
+            background-color: var(--secondary);
+            transform: translateY(-2px);
+        }
+        
+        .confirmation-form {
+            margin-top: 30px;
+            padding: 25px;
+            background-color: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+        }
+        
+        .form-group {
+            margin-bottom: 20px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-sizing: border-box;
+            font-family: inherit;
+            transition: all 0.3s ease;
+        }
+        
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary);
+            box-shadow: 0 0 0 3px rgba(108, 92, 231, 0.2);
+            outline: none;
+        }
+        
+        .submit-btn {
+            background-color: var(--success);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-size: 16px;
+            width: 100%;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .submit-btn:hover {
+            background-color: #00a884;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 184, 148, 0.3);
+        }
+        
+        .thank-you {
+            text-align: center;
+            margin-top: 30px;
+            padding: 20px;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            border-radius: 12px;
+            display: none;
+        }
+        
+        .thank-you h3 {
+            color: var(--primary);
+            font-size: 22px;
+            margin-bottom: 10px;
+        }
+        
+        .thank-you p {
+            color: var(--dark);
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .heart {
+            color: var(--accent);
+            font-size: 24px;
+            animation: pulse 1.5s infinite;
+        }
+        
+        @keyframes pulse {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
+        }
+        
+        /* Animations */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .animate-fade {
+            animation: fadeIn 0.6s ease forwards;
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <div class="payment-container animate-fade">
+        <div class="payment-header">
+            <div class="store-name">DEADLOX STORE</div>
+            <h1>Metode Pembayaran</h1>
+            <p>Silakan pilih metode pembayaran yang tersedia</p>
+        </div>
+
+        <!-- DANA Payment Method -->
+        <div class="payment-method animate-fade" style="animation-delay: 0.1s">
+            <h2><i class="fas fa-wallet"></i> DANA</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/7/72/Logo_DANA.svg" alt="DANA Logo" class="payment-logo">
+            <div class="payment-number" id="dana-number">
+                87886848267
+                <button class="copy-btn" onclick="copyToClipboard('dana-number')">
+                    <i class="far fa-copy"></i> Salin
+                </button>
+            </div>
+            <div class="payment-instruction">
+                <p><strong>Cara pembayaran:</strong></p>
+                <ol>
+                    <li>Buka aplikasi DANA di smartphone Anda</li>
+                    <li>Pilih menu "Kirim"</li>
+                    <li>Masukkan nomor DANA di atas</li>
+                    <li>Masukkan nominal pembayaran</li>
+                    <li>Ikuti instruksi hingga pembayaran selesai</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- GOPAY Payment Method -->
+        <div class="payment-method animate-fade" style="animation-delay: 0.2s">
+            <h2><i class="fab fa-google-pay"></i> GOPAY</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/8/86/Gopay_logo.svg" alt="GOPAY Logo" class="payment-logo">
+            <div class="payment-number" id="gopay-number">
+                87886848267
+                <button class="copy-btn" onclick="copyToClipboard('gopay-number')">
+                    <i class="far fa-copy"></i> Salin
+                </button>
+            </div>
+            <div class="payment-instruction">
+                <p><strong>Cara pembayaran:</strong></p>
+                <ol>
+                    <li>Buka aplikasi Gojek di smartphone Anda</li>
+                    <li>Pilih menu "GOPAY"</li>
+                    <li>Pilih "Transfer"</li>
+                    <li>Masukkan nomor GOPAY di atas</li>
+                    <li>Masukkan nominal pembayaran</li>
+                    <li>Ikuti instruksi hingga pembayaran selesai</li>
+                </ol>
+            </div>
+        </div>
+
+        <!-- QRIS Payment Method -->
+        <div class="payment-method animate-fade" style="animation-delay: 0.3s">
+            <h2><i class="fas fa-qrcode"></i> QRIS</h2>
+            <img src="https://upload.wikimedia.org/wikipedia/commons/d/d0/QRIS_logo.svg" alt="QRIS Logo" class="payment-logo">
+            <div class="payment-instruction">
+                <p class="warning"><i class="fas fa-exclamation-circle"></i> Maaf, metode pembayaran QRIS saat ini tidak tersedia.</p>
+                <p>Jika Anda ingin menggunakan QRIS, silakan hubungi admin untuk mendapatkan kode QRIS yang valid.</p>
+            </div>
+        </div>
+
+        <!-- Konfirmasi Pembayaran Form -->
+        <div class="confirmation-form animate-fade" style="animation-delay: 0.4s">
+            <h2><i class="fas fa-paper-plane"></i> Konfirmasi Pembayaran</h2>
+            <form id="paymentForm">
+                <div class="form-group">
+                    <label for="name"><i class="far fa-user"></i> Nama Lengkap:</label>
+                    <input type="text" id="name" required placeholder="Masukkan nama lengkap Anda">
+                </div>
+                <div class="form-group">
+                    <label for="phone"><i class="fas fa-phone-alt"></i> Nomor WhatsApp Anda:</label>
+                    <input type="tel" id="phone" required placeholder="Contoh: 6281234567890">
+                </div>
+                <div class="form-group">
+                    <label for="amount"><i class="fas fa-money-bill-wave"></i> Jumlah Pembayaran (Rp):</label>
+                    <input type="number" id="amount" required placeholder="Masukkan nominal pembayaran">
+                </div>
+                <div class="form-group">
+                    <label for="method"><i class="fas fa-credit-card"></i> Metode Pembayaran:</label>
+                    <select id="method" required>
+                        <option value="">Pilih metode...</option>
+                        <option value="DANA">DANA</option>
+                        <option value="GOPAY">GOPAY</option>
+                        <option value="QRIS">QRIS (harap hubungi admin)</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="proof"><i class="fas fa-camera"></i> Upload Bukti Pembayaran:</label>
+                    <input type="file" id="proof" accept="image/*" required>
+                </div>
+                <div class="form-group">
+                    <label for="note"><i class="far fa-sticky-note"></i> Catatan (opsional):</label>
+                    <textarea id="note" rows="3" placeholder="Tulis catatan tambahan jika perlu"></textarea>
+                </div>
+                <button type="button" class="submit-btn" onclick="sendConfirmation()">
+                    <i class="fab fa-whatsapp"></i> Kirim Konfirmasi via WhatsApp
+                </button>
+            </form>
+        </div>
+
+        <div class="note animate-fade" style="animation-delay: 0.5s">
+            <p><strong><i class="fas fa-info-circle"></i> Catatan:</strong></p>
+            <ul>
+                <li>Setelah melakukan pembayaran, harap isi form konfirmasi di atas</li>
+                <li>Konfirmasi pembayaran akan dikirim ke WhatsApp admin</li>
+                <li>Pembayaran akan diproses dalam waktu 1x24 jam setelah konfirmasi</li>
+                <li>Untuk masalah pembayaran, silakan hubungi admin</li>
+            </ul>
+        </div>
+
+        <!-- Thank You Message -->
+        <div class="thank-you animate-fade" id="thankYouMessage" style="animation-delay: 0.6s">
+            <h3>Konfirmasi Terkirim!</h3>
+            <p>TERIMAKASIH TELAH BERBELANJA DI DEADLOX STORE KU</p>
+            <p>HARAP KAMU AKAN KEMBALI LAGI UNTUK MEMBELI YANG LAIN <span class="heart">🥰</span></p>
+            <p>Admin akan segera memverifikasi pembayaran Anda.</p>
+        </div>
+    </div>
+
+    <script>
+        function copyToClipboard(elementId) {
+            const element = document.getElementById(elementId);
+            const textToCopy = element.textContent.replace('Salin', '').trim();
+            
+            navigator.clipboard.writeText(textToCopy).then(() => {
+                // Show copied animation
+                const btn = element.querySelector('button');
+                btn.innerHTML = '<i class="fas fa-check"></i> Tersalin!';
+                btn.style.backgroundColor = 'var(--success)';
+                
+                setTimeout(() => {
+                    btn.innerHTML = '<i class="far fa-copy"></i> Salin';
+                    btn.style.backgroundColor = 'var(--primary)';
+                }, 2000);
+            }).catch(err => {
+                console.error('Gagal menyalin: ', err);
+            });
+        }
+
+        function sendConfirmation() {
+            // Nomor WhatsApp admin
+            const adminNumber = "6281229353885"; 
+            
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const amount = document.getElementById('amount').value;
+            const method = document.getElementById('method').value;
+            const note = document.getElementById('note').value;
+            
+            // Validasi form
+            if (!name || !phone || !amount || !method) {
+                alert('Harap isi semua field yang wajib diisi!');
+                return;
+            }
+            
+            // Format pesan WhatsApp
+            const message = `Halo Admin DEADLOX STORE, saya sudah melakukan pembayaran dengan detail berikut:
+
+📌 *Nama*: ${name}
+📞 *Nomor WhatsApp*: ${phone}
+💰 *Jumlah Pembayaran*: Rp ${amount}
+💳 *Metode Pembayaran*: ${method}
+📝 *Catatan*: ${note || '-'}
+
+TERIMAKASIH TELAH BERBELANJA DI DEADLOX STORE KU
+HARAP KAMU AKAN KEMBALI LAGI UNTUK MEMBELI YANG LAIN 🥰
+
+Silakan verifikasi pembayaran saya. Terima kasih.`;
+            
+            // Encode pesan untuk URL
+            const encodedMessage = encodeURIComponent(message);
+            
+            // Membuka link WhatsApp
+            window.open(`https://wa.me/${adminNumber}?text=${encodedMessage}`, '_blank');
+            
+            // Show thank you message
+            document.getElementById('thankYouMessage').style.display = 'block';
+            window.scrollTo({
+                top: document.body.scrollHeight,
+                behavior: 'smooth'
+            });
+            
+            // Reset form
+            document.getElementById('paymentForm').reset();
+        }
+    </script>
+</body>
+</html>
